@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Enter email</label>
                 <input type="text" name="email" class="form-control" value="
-                        @if ($userDatas->email == $paymentDatas->email) {{ $userDatas->email }} @endif">
+                        @if ($userDatas->email == $paymentDatas->email) {{ $userDatas->email }} @endif"  readonly>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Enter amount</label>

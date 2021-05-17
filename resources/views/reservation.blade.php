@@ -1,6 +1,10 @@
 @extends('layouts.reser')
 
 @section('content')
+    {{-- @php
+    $userData = Auth::user()->email;
+    dd($userData);
+    @endphp --}}
     <div id="page-wrapper">
         <div id="page-inner">
             <div class="row">
@@ -58,7 +62,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input name="email" id="email" type="email" class="form-control" required>
+                                    <input name="email" id="email" type="email" class="form-control"
+                                        value=" @php
+                                            $userData = Auth::user()->email;
+                                            echo $userData;
+                                            // dd($userData);
+                                        @endphp" required readonly>
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
                                     @endif
