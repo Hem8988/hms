@@ -15,9 +15,21 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- jQuery Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--==============================================================================-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+        integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <!--==============================================================================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <!--==============================================================================-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <!--==============================================================================-->
     <link rel="stylesheet" href={{ asset('assets/argon.css?v=1.2.0') }} type="text/css">
+        <style>
+    .required
+{
+    color: red;
+}
+    </style>
 </head>
 
 <body>
@@ -34,7 +46,7 @@
                                 src="https://img.icons8.com/emoji/30/000000/hotel-emoji.png" />Avalability</a>
                     </li>
                     <li>
-                        <a href="{{ url('home') }}"><img
+                        <a href="{{ url('reservation') }}"><img
                                 src="https://img.icons8.com/ultraviolet/30/000000/booking.png" />
                             Reservation</a>
                     </li>

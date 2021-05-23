@@ -30,6 +30,16 @@
 
     <!-- Add trình soạn thảo văn bản -->
     <script type="text/javascript" language="javascript" src="admin_asset/ckeditor/ckeditor.js"></script>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <style>
+    .required
+{
+    color: red;
+}
+    </style>
 </head>
 
 <body>
@@ -101,13 +111,13 @@
                                 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/information/list">Information</a>
+                                    <a href="{{ route('admin.information.list') }}">Information</a>
                                 </li>
                                 <li>
-                                    <a href="admin/about/list">About</a>
+                                    <a href="{{ route('admin.about.list') }}">About</a>
                                 </li>
                                 <li>
-                                    <a href="admin/description/list">Descripton</a>
+                                    <a href="{{ route('admin.description.list') }}">Descripton</a>
                                 </li>
 
                             </ul>
@@ -118,10 +128,10 @@
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/event/list">List</a>
+                                    <a href="{{ route('admin.event.list') }}">List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/event/add">Add</a>
+                                    <a href="{{ url('AddEvent') }}">Add</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -144,10 +154,10 @@
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/slide/list">List</a>
+                                    <a href="{{ url('slide&&list') }}">List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/slide/add">Add</a>
+                                    <a href="{{ url('slider') }}">Add</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -183,10 +193,10 @@
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/reservation/list">List</a>
+                                    <a href="{{ url('List&&Reservation') }}">List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/reservation/add">Add</a>
+                                    <a href="{{ url('Add&&Reservation') }}">Add</a>
                                 </li>
                             </ul>
                         </li>
@@ -250,15 +260,5 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-
-    </script>
-
-    @yield('script')
-</body>
-
+   </body>
 </html>

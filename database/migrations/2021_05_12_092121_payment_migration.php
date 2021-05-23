@@ -18,6 +18,8 @@ class PaymentMigration extends Migration
             $table->string('fname')->nullable();
             $table->string('lname')->nullable();
             $table->string('email')->nullable();
+            $table->unsignedBigInteger('rId')->nullable();
+            $table->foreign('rId')->references('id')->on('reservations');
             $table->bigInteger('phone')->nullable();
             $table->bigInteger('amount')->nullable();
             $table->string('payment_id')->nullable();

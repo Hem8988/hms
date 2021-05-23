@@ -27,19 +27,18 @@ class paymentcontroller extends Controller
     public function payment(Request $request)
     {
 
-        $paymentData = payment::where("email", $request->email)->get('email');
+        $paymentData = payment::where("rId", $request->rId)->get('rId');
         foreach ($paymentData as $paymentss) {
-            if ($paymentss->email == $request->email) {
+            if ($paymentss->rId == $request->rId) {
                 $amount = $request->input('amount');
 
-                // $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
                 $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
 
                 // Orders
                 $order  = $api->order->create(array('receipt' => '123', 'amount' => $amount * 100, 'currency' => 'INR')); // Creates order
                 $orderId = $order['id'];
 
-                payment::where("email", $request->email)
+                payment::where("rId", $request->rId)
                     ->update(["amount" => $amount, "payment_id" => $orderId]);
                 $data = array(
                     'order_id' => $orderId,
@@ -58,7 +57,6 @@ class paymentcontroller extends Controller
         $data = $request->all();
 
         $user = Payment::where('payment_id', $data['razorpay_order_id'])->first();
-        // dd($user);die;
         $user->payment_done = true;
         $user->razorpay_id = $data['razorpay_payment_id'];
 

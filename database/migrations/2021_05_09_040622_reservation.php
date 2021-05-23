@@ -18,17 +18,18 @@ class Reservation extends Migration
             $table->string('title');      
             $table->string('fname');      
             $table->string('lname')->nullable();   
-            $table->string('email')->unique(); 
+            $table->string('email'); 
             $table->unsignedBigInteger('country');   
             $table->unsignedBigInteger('state');  
             $table->unsignedBigInteger('city');    
-            $table->string('phone')->unique();   
+            $table->string('phone');   
             $table->unsignedBigInteger('troom');   
             $table->unsignedBigInteger('bed'); 
             $table->unsignedBigInteger('nroom'); 
             $table->string('meal'); 
             $table->date('cin'); 
             $table->date('cout'); 
+            $table->integer('status')->default('1');      
             $table->timestamps();
         });
     }

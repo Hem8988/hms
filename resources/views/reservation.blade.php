@@ -1,10 +1,6 @@
 @extends('layouts.reser')
 
 @section('content')
-    {{-- @php
-    $userData = Auth::user()->email;
-    dd($userData);
-    @endphp --}}
     <div id="page-wrapper">
         <div id="page-inner">
             <div class="row">
@@ -21,17 +17,10 @@
                             PERSONAL INFORMATION
                         </div>
                         <div class="panel-body">
-                            {{-- @if (count($errors) > 0)
-                                <ul class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif --}}
                             <form name="form">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Title*</label>
+                                    <label>Title<span class="required">*</span></label>
                                     <select name="title" id="title" class="form-control" required>
                                         <option value selected></option>
                                         <option value="Dr.">Dr.</option>
@@ -47,7 +36,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>First Name</label>
+                                    <label>First Name<span class="required">*</span></label>
                                     <input name="fname" id="fname" class="form-control" required>
                                     @if ($errors->has('fname'))
                                         <span class="text-danger">{{ $errors->first('fname') }}</span>
@@ -61,7 +50,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>Email</label>
+                                    <label>Email<span class="required">*</span></label>
                                     <input name="email" id="email" type="email" class="form-control"
                                         value=" @php
                                             $userData = Auth::user()->email;
@@ -73,7 +62,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>country</label>*</label>
+                                    <label>country<span class="required">*</span></label></label>
                                     <select name="country" id="country" class="form-control" required>
                                         <option value selected>Select country</option>
                                         @foreach ($countries as $countryValue)
@@ -87,7 +76,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>State*</label>
+                                    <label>State<span class="required">*</span></label>
                                     <select name="state" id="state" class="form-control" required>
                                     </select>
                                     @if ($errors->has('state'))
@@ -95,7 +84,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label>City*</label>
+                                    <label>City<span class="required">*</span></label>
                                     <select name="city" id="city" class="form-control" required>
                                     </select>
                                     @if ($errors->has('city'))
@@ -103,7 +92,7 @@
                                     @endif
                                 </div>
                                 <div class=" form-group">
-                                    <label>Phone Number</label>
+                                    <label>Phone Number<span class="required">*</span></label>
                                     <input name="phone" id="phone" type="text" class="form-control" required>
                                     @if ($errors->has('phone'))
                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -124,7 +113,7 @@
                             <form name="form">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label>Type Of Room *</label>
+                                        <label>Type Of Room <span class="required">*</span></label>
                                         <select name="troom" id="troom" class="form-control" required>
                                             <option value selected></option>
                                             @foreach ($categories as $categoriesvalue)
@@ -138,7 +127,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>No.of Rooms *</label>
+                                        <label>No.of Rooms <span class="required">*</span></label>
                                         <select name="nroom" id="nroom" class="form-control" required>
                                         </select>
                                         @if ($errors->has('nroom'))
@@ -146,7 +135,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>Bedding Type</label>
+                                        <label>Bedding Type<span class="required">*</span></label>
                                         <select name="bed" id="bed" class="form-control" required>
                                             <option value selected></option>
                                             <option value="1">1</option>
@@ -157,7 +146,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>Meal Plan</label>
+                                        <label>Meal Plan<span class="required">*</span></label>
                                         <select name="meal" id="meal" class="form-control" required>
                                             <option value selected></option>
                                             <option value="Room only">Room only</option>
@@ -170,15 +159,17 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>Check-In</label>
-                                        <input name="cin" id="cin" type="date" class="form-control">
+                                        <label>Check-In<span class="required">*</span></label>
+                                        <input name="cin" id="cin" class="form-control" placeholder="Check In Date"
+                                            required>
                                         @if ($errors->has('cin'))
                                             <span class="text-danger">{{ $errors->first('cin') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label>Check-Out</label>
-                                        <input name="cout" id="cout" type="date" class="form-control">
+                                        <label>Check-Out<span class="required">*</span></label>
+                                        <input name="cout" id="cout" class="form-control" placeholder="check out Date"
+                                            required>
                                         @if ($errors->has('cout'))
                                             <span class="text-danger">{{ $errors->first('cout') }}</span>
                                         @endif
@@ -189,17 +180,43 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="butsave" class="btn btn-primary btn-block">Submit</button>
+            <div class="text-center">
+                <button type="submit" id="butsave" class="btn btn-primary btn-lg">Submit</button>
+            </div>
         </div>
         <!-- /. PAGE INNER  -->
     </div>
     <!-- /. PAGE WRAPPER  -->
 
 
-    <!-------------------------data storin script --------------------------------------->
-    <script type="text/javascript">
-        // Dynamic country and state scritpping
+
+    <script>
+        // datepicker 
         $(document).ready(function() {
+            var minDate = new Date();
+
+            $("#cin").datepicker({
+                showAnim: 'drop',
+                numberOfMonth: 1,
+                minDate: minDate,
+                dateFormat: 'yy-mm-dd',
+                onClose: function(selectedDate) {
+                    $("#cout").datepicker("option", "minDate", selectedDate);
+                }
+            });
+
+            $("#cout").datepicker({
+                showAnim: 'drop',
+                numberOfMonth: 1,
+                minDate: minDate,
+                dateFormat: 'yy-mm-dd',
+                onClose: function(selectedDate) {
+                    $("#cin").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
+            // Dynamic country and state scritpping
+
             $('#country').on('change', function() {
                 var idCountry = this.value;
                 $("#state").html('');
