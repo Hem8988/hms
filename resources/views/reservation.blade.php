@@ -1,6 +1,10 @@
 @extends('layouts.reser')
 
 @section('content')
+<?php
+use App\Http\Controllers\RoomCategoryController;
+$categories = RoomCategoryController::Allroom();
+?>
     <div id="page-wrapper">
         <div id="page-inner">
             <div class="row">

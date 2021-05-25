@@ -54,6 +54,13 @@ class RoomCategoryController extends Controller
         return view('admin.room_category.list', ['room__categories' => $roomList]);
     }
 
+    public static function Allroom()
+    {
+        $categories = room_Category::all();
+        return $categories;
+        // return view('admin.room_category.list', ['room__categories' => $roomList]);
+    }
+
 
 
 

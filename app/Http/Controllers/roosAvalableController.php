@@ -19,7 +19,6 @@ class roosAvalableController extends Controller
         $availableroom = room::where("status", '=', "1")->count();
         // dd($availableroom);
 
-
         // get all room with category and status in table F
         $room = DB::table('rooms')
             ->join('room__categories', 'rooms.idCategory', "=", 'room__categories.id')
@@ -28,9 +27,15 @@ class roosAvalableController extends Controller
 
         return view('RoomsAvalability', compact('room',  'roomCount', 'availableroom'));
     }
-    // public function viewAvailableroom()
-    // {
-    //     $roomAval = room::all()->count();
-    //     dd($roomAval);
-    // }
+    public static function viewAvailableroom()
+    {
+        $roomAval = room::all()->count();
+        $availableroom = room::where("status", '=', '1')->count();
+        $bookedRoom = room::where("status", '=', "0")->count();
+
+        return [$roomAval, $availableroom, $bookedRoom];
+        // return $roomAval;
+        // return $availableroom;
+        // return $bookedRoom;
+    }
 }

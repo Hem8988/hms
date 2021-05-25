@@ -6,6 +6,7 @@
     @endforeach
     @foreach ($description as $description )
     @endforeach
+
     <!--  Welcome -->
     <section class="site-hero overlay" style="background-image: url(home/images/hero_4.jpg)"
         data-stellar-background-ratio="0.5">

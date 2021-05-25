@@ -166,13 +166,6 @@ Route::get('/Edit&&detail/{id}', [reservationController::class, 'Edit']);
 Route::get('/Edit&&detail%%Post/{id}', [reservationController::class, 'EditPost']);
 Route::get('/delete&&detail/{id}', [reservationController::class, 'Delete']);
 
-Route::get('admin/dashboard', function () {
-    $roomAval = room::all()->count();
-    $availableroom = room::where("status", '=', "1")->count();
-    $bookedRoom = room::where("status", '=', "0")->count();
-    return view('admin.home', compact(['roomAval', 'availableroom', 'bookedRoom']));
-});
-
 //list of users
 Route::get('list&&ouer', function () {
     $user = user::all();

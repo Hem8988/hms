@@ -27,18 +27,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //room categroy
-        View::share('key', 'value');
-        Schema::defaultStringLength(191);
+    //     View::share('key', 'value');
+    //     Schema::defaultStringLength(191);
 
-       $categories=DB::table('room__categories')->get();
-       View::share('categories',$categories);
+    //    $categories=DB::table('room__categories')->get();
+    //    View::share('categories',$categories);
 
-//roomsname
-    //    View::share('key', 'value');
-    //    Schema::defaultStringLength(191);
-
-    //   $roomList=DB::table('rooms')->get();
-    //   View::share('rooms',$roomList); 
      
     }
 }
