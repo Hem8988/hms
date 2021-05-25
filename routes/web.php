@@ -17,15 +17,14 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\SlideController;
+use App\Http\Controllers\Food_categoryController;
 use App\Models\room_Category;
-use App\Models\reservation;
+
+use App\Models\category_food;
 use App\Models\room;
-use App\Models\country;
-use App\Models\city;
-use App\Models\state;
-use App\Models\payment;
 use App\Models\user;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\FoodController;
 
 
 
@@ -44,8 +43,7 @@ use Illuminate\Support\Facades\DB;
 
 
 Auth::routes();
-
-
+// frontend 
 Route::get('/', [PageController::class, 'Home']);
 Route::get('/about', [PageController::class, 'About']);
 Route::get('/event', [PageController::class, 'Event']);
@@ -64,7 +62,7 @@ Route::get('/RoomsAvalability', [roosAvalableController::class, 'view']);
 Route::post('/error', [reservationController::class, 'insertreservation'])->name('error');
 Route::post('/reservation', [reservationController::class, 'insertreservation'])->name('reservation-done');
 Route::get('/reservation-Information', [reinformationController::class, 'reservationInformation']);
-// cancelReservation
+Route::get('information/{id}', [reinformationController::class, 'getdetail']);
 Route::post('/reservation-Cancellation', [reinformationController::class, 'reaervationCanclling']);
 
 // route for admin login
@@ -162,24 +160,50 @@ Route::get('List&&Reservation', function () {
     // dd($ReservationGet);
     return view('admin.reservation.list', compact('reservation'));
 });
-// Route::post('/Slide&&Add', [SlideController::class, 'AddSlide']);
-// Route::get('/slide&&list', [SlideController::class, 'getSlide']);
-// Route::get('/Slide&&edit&&show/{id}', [SlideController::class, 'slideEditShow']);
-// Route::post('/Slide&&edit/{id}', [SlideController::class, 'Editslide']);
-// Route::get('/delete&&slide/{id}', [SlideController::class, 'slideDelete']);
-
 
 Route::get('viewDdetails/{id}', [reservationController::class, 'getdetail']);
 Route::get('/Edit&&detail/{id}', [reservationController::class, 'Edit']);
 Route::get('/Edit&&detail%%Post/{id}', [reservationController::class, 'EditPost']);
 Route::get('/delete&&detail/{id}', [reservationController::class, 'Delete']);
 
+Route::get('admin/dashboard', function () {
+    $roomAval = room::all()->count();
+    $availableroom = room::where("status", '=', "1")->count();
+    $bookedRoom = room::where("status", '=', "0")->count();
+    return view('admin.home', compact(['roomAval', 'availableroom', 'bookedRoom']));
+});
 
+//list of users
 Route::get('list&&ouer', function () {
-    $user= user::all();
-    return view('admin.user.list',compact('user'));
+    $user = user::all();
+    return view('admin.user.list', compact('user'));
 });
 
-Route::get('AddEvent', function () {
-    return view('admin.event.add');
+//foodCategory
+Route::get('addFoodCategory', function () {
+    return view('admin.foodCategory.add');
 });
+Route::post('/Add&&Category', [Food_categoryController::class, 'inserCategory']);
+Route::get('list&&Category', function () {
+    $foodCategory = category_food::all();
+    return view('admin.foodCategory.list', compact('foodCategory'));
+});
+Route::get('/Edit&&categoryofFood/{id}', [Food_categoryController::class, 'Editfood']);
+Route::post('/Edit/categoryFood/{id}', [Food_categoryController::class, 'EditfoodPost']);
+Route::get('/delete&&foodCategory/{id}', [Food_categoryController::class, 'Delete']);
+
+
+
+Route::get('addFood', function () {
+    $categoryFood = category_food::all();
+    return view('admin.food.add', compact('categoryFood'));
+});
+Route::post('/Add/food', [FoodController::class, 'AddFood'])->name('admin.food.add');
+Route::get('addFood', function () {
+    $categoryFood = category_food::all();
+    return view('admin.food.add', compact('categoryFood'));
+});
+Route::get('/list/food', [FoodController::class, 'getFood']);
+Route::get('/show/Edit/Food/{id}', [FoodController::class, 'showEdit']);
+Route::post('/Edit/Food/{id}', [FoodController::class, 'Editfood']);
+Route::get('/delete/food/{id}', [FoodController::class, 'Delete']);

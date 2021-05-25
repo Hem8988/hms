@@ -47,4 +47,26 @@ class reinformationController extends Controller
             "statusCode" => 200
         ));
     }
+
+    public function getdetail(Request $request)
+    {
+        $id =  $request->route('id');
+
+        $information  = DB::table('reservations')
+            ->join('countries', 'reservations.country', "=", 'countries.country_id')
+            ->join('states', 'reservations.state', "=", 'states.state_id')
+            ->join('cities', 'reservations.city', "=", 'cities.city_id')
+            ->join('room__categories', 'reservations.troom', "=", 'room__categories.id')
+            ->join('rooms', 'reservations.nroom', "=", 'rooms.id')
+            ->where('reservations.id', '=', $id)
+            ->select('reservations.*', 'countries.country_name', 'states.state_name', 'cities.city_name', 'room__categories.name', 'rooms.room_name')
+            ->get();
+
+
+        $paymentData = payment::where("rId", $id)
+            ->get(["amount", "payment_done"]);
+
+        return view('information', compact('information', 'paymentData'));
+    }
+
 }

@@ -32,18 +32,21 @@ class paymentcontroller extends Controller
             if ($paymentss->rId == $request->rId) {
                 $amount = $request->input('amount');
 
-                $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-
+                // $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+                $api = new Api(('rzp_test_A9peA16MzvYXhT'), ('EUEFiegnySt452E7vN8oL1TQ'));
+                // dd($api);
+                // var_dump($api);
                 // Orders
                 $order  = $api->order->create(array('receipt' => '123', 'amount' => $amount * 100, 'currency' => 'INR')); // Creates order
                 $orderId = $order['id'];
-
+                
                 payment::where("rId", $request->rId)
-                    ->update(["amount" => $amount, "payment_id" => $orderId]);
+                ->update(["amount" => $amount, "payment_id" => $orderId]);
                 $data = array(
                     'order_id' => $orderId,
                     'amount' => $amount
                 );
+                // dd($data);
 
                 return redirect()->route('index')->with('data', $data);
             } else {
@@ -60,7 +63,7 @@ class paymentcontroller extends Controller
         $user->payment_done = true;
         $user->razorpay_id = $data['razorpay_payment_id'];
 
-        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $api = new Api(('rzp_test_Qd6E54yXn8iKzV'), ('EUEFiegnySt452E7vN8oL1TQ'));
 
         try {
             $attributes = array(

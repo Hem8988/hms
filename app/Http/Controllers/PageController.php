@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Description;
 use App\Models\Slide;
-use App\Models\CategoryFood;
+use App\Models\category_food;
+use App\Models\Food;
 use App\Models\Review;
 use App\Models\Event;
 use App\Models\room_Category;
@@ -18,7 +19,8 @@ class PageController extends Controller
 
     public function Home()
     {
-        $food_category = CategoryFood::all();
+        $food_category = category_food::all();
+        $food = food::all();
         $category = room_Category::all();
         $category = room_Category::all();
         $review = Review::all();
@@ -31,7 +33,7 @@ class PageController extends Controller
         return view('frontend.Home', [
             'food_category' => $food_category, 'event' => $event,
             'slide' => $slide,  'category' => $category, 'review' => $review,
-            'infor' => $infor, 'about' => $about, 'description' => $description
+            'infor' => $infor, 'about' => $about, 'description' => $description, 'food' => $food,
         ]);
     }
     public function About()

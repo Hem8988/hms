@@ -81,21 +81,21 @@
 
                     @foreach ($food_category as $fc)
                         <?php $i = 1; ?>
-                        <div class="tab-pane fade @if ($fc->id == 1) show active @endif text-left" id={{ $fc->name }} role="tabpanel"
+                        <div class="tab-pane fade @if ($fc->id == 6) show active @endif text-left" id={{ $fc->name }} role="tabpanel"
                             aria-labelledby="{{ $fc->name }}-tab">
                             <div class="row">
 
-                                @foreach ($fc->getFood as $f)
+                               @foreach ($food as $f)
 
                                     @if ($i == 1)
                                         <div class="col-md-6">
                                     @endif
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">${{ $f->price }}</span>
-                                        <h3 class="text-white"><a href="#" class="text-white">{{ $f->name }}</a></h3>
+                                        <h3 class="text-white"><a href="#" class="text-white">{{ $f->food_name }}</a></h3>
                                         <p class="text-white text-opacity-7">{{ $f->description }}</p>
                                     </div>
-                                    @if ($i == count($fc->getFood) / 2)
+                                    @if ($i == ($fc->id) / 2)
                             </div>
                             <div class="col-md-6">
                     @endif

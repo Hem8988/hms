@@ -31,14 +31,15 @@
     <!-- Add trình soạn thảo văn bản -->
     <script type="text/javascript" language="javascript" src="admin_asset/ckeditor/ckeditor.js"></script>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href={{ asset('assets/argon.css?v=1.2.0') }} type="text/css">
     <style>
-    .required
-{
-    color: red;
-}
+        .required {
+            color: red;
+        }
+
     </style>
 </head>
 
@@ -124,8 +125,8 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/loaitin/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Event<span
-                                    class="fa arrow"></span></a>
+                            <a href="admin/loaitin/danhsach"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                Event<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ route('admin.event.list') }}">List</a>
@@ -137,20 +138,33 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/tintuc/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Food <span
-                                    class="fa arrow"></span></a>
+                            <a href="admin/tintuc/danhsach"><i class="fa fa-lemon-o" aria-hidden="true"></i> Food
+                                Category <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/food/list">List</a>
+                                    <a href="{{ url('list&&Category') }}">List</a>
                                 </li>
                                 <li>
-                                    <a href="admin/food/add">Add</a>
+                                    <a href="{{ url('addFoodCategory') }}">Add</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/slide/list"><i class="fa fa-bar-chart-o fa-fw"></i> Slide<span
+                            <a href="admin/tintuc/danhsach"><i class="fa fa-cutlery" aria-hidden="true"></i> Food <span
+                                    class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ url('list/food') }}">List</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('addFood') }}">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="admin/slide/list"><i class="fa fa-sliders" aria-hidden="true"></i> Slide<span
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -163,8 +177,8 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/category_room/list"><i class="fa fa-bar-chart-o fa-fw"></i>Category Room<span
-                                    class="fa arrow"></span></a>
+                            <a href="admin/category_room/list"><i class="fa fa-home" aria-hidden="true"></i>Category
+                                Room<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ route('admin.room_category.list') }}">List</a>
@@ -176,7 +190,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/room/list"><i class="fa fa-bar-chart-o fa-fw"></i> Room<span
+                            <a href="admin/room/list"><i class="fa fa-sliders" aria-hidden="true"></i> Room<span
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -189,15 +203,15 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="admin/room/list"><i class="fa fa-bar-chart-o fa-fw"></i> Reservation<span
+                            <a href="admin/room/list"><i class="fa fa-archive" aria-hidden="true"></i> Reservation<span
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ url('List&&Reservation') }}">List</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ url('Add&&Reservation') }}">Add</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
 
@@ -206,15 +220,11 @@
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/user/list">List</a>
+                                    <a href="{{ url('list&&ouer') }}">List</a>
                                 </li>
-                                <li>
-                                    <a href="admin/user/add">Add</a>
-                                </li>
-
                             </ul>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="admin/report"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span
                                     class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -226,7 +236,7 @@
                                 </li>
 
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <!-- /.nav-second-level -->
 
@@ -260,5 +270,5 @@
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-   </body>
-</html>
+        < /body> < /
+        html >

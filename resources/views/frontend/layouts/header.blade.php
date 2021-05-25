@@ -1,4 +1,3 @@
-
 <header class="site-header js-site-header">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -9,6 +8,9 @@
                     <span></span>
                     <span></span>
                 </div>
+                {{-- @php
+                    dd(Auth::user());
+                @endphp --}}
                 <!-- END menu-toggle -->
                 <div class="site-navbar js-site-navbar">
                     <nav role="navigation">
@@ -20,7 +22,13 @@
                                         <li><a href="{{ url('rooms') }}">Rooms</a></li>
                                         <li><a href="{{ url('about') }}">About</a></li>
                                         <li><a href="{{ url('event') }}">Events</a></li>
-                                        <li><a href="{{ route('register') }}">Sign Up</a></li>
+                                        @if (!Auth::user())
+                                            <li><a href="{{ route('register') }}">Sign Up</a></li>
+
+                                        @else
+
+                                            <li><a href="{{ route('register') }}">My Profile</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

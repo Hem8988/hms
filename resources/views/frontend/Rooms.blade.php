@@ -45,7 +45,7 @@
                                                     class="text-uppercase letter-spacing-2">/ per night</span> </span>
                                             <h2 class="mb-4">{{ $cate->name }}</h2>
                                             <p>{{ $cate->description }}</p>
-                                            <p><a href="reservation/{{ $cate->id }}" class="btn btn-primary text-white">Book Now</a></p>
+                                            <p><a href="{{ route('register') }}" class="btn btn-primary text-white">Book Now</a></p>
                                         </div>
                                     </div>
                                     <?php $i++; ?>

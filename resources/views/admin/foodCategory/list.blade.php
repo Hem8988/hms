@@ -2,49 +2,40 @@
 
 @section('content')
 
-    {{-- @php
-    dd($user);
-    @endphp --}}
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User
+                    <h1 class="page-header">Food
                         <small>List</small>
                     </h1>
                 </div>
-                @if (session('thongbao'))
+                <!-- /.col-lg-12 -->
+                @if (session('annoucement'))
                     <div class="alert alert-success">
-                        {{ session('thongbao') }}
+                        {{ session('annoucement') }}
                     </div>
                 @endif
-                <!-- /.col-lg-12 -->
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr align="center">
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>created_a</th>
-                            {{-- <th>Edit</th>
-                            <th>Delete</th> --}}
-
+                            <th>Category Of Food</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $us)
+                        @foreach ($foodCategory as $f)
                             <tr class="odd gradeX" align="center">
-                                <td>{{ $us->id }}</td>
-                                <td>{{ $us->name }}</td>
-                                <td>{{ $us->email }}</td>
-                                <td>{{ $us->created_at }}</td>                            
-{{-- 
+                                <td>{{ $f->id }}</td>
+                                <td>{{ $f->name }}</td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
-                                        href="admin/user/edit/{{ $us->id }}">Edit</a></td>
+                                        href="Edit&&categoryofFood/{{ $f->id }}">Edit</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a
-                                        onclick="return confirm('Bạn có chắc muốn xóa ?');"
-                                        href="admin/user/delete/{{ $us->id }}"> Delete</a></td> --}}
+                                        href="delete&&foodCategory/{{ $f->id }}"
+                                        onclick="return confirm('Are you sure you want to delete?');"> Delete</a></td>
 
                             </tr>
                         @endforeach
@@ -56,5 +47,9 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+
+@endsection
+
+@section('scripts')
 
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CategoryFoodMigration extends Migration
+class Food extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class CategoryFoodMigration extends Migration
      */
     public function up()
     {
-        Schema::create('category_foods', function (Blueprint $table) {
+        Schema::create('foods', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->longText('description');
+            $table->integer('price');
+            $table->unsignedBigInteger('idCategory');
+            $table->foreign('idCategory')->references('id')->on('category_foods');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -26,6 +31,6 @@ class CategoryFoodMigration extends Migration
      */
     public function down()
     {
-        //
+       
     }
 }

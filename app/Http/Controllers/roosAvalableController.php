@@ -11,15 +11,7 @@ class roosAvalableController extends Controller
 {
     public function view()
     {
-        //get room category
-        // $room_category = room_Category::all();
 
-        // foreach ($room_category as $room_categorys)
-
-        //count totla no of rooms
-        // $count = room::where("idcategory", $room_categorys->id)
-        //     ->count();
-        //count avalable rooms which 
 
         $roomCount = room::all()
             ->count();
@@ -36,4 +28,9 @@ class roosAvalableController extends Controller
 
         return view('RoomsAvalability', compact('room',  'roomCount', 'availableroom'));
     }
+    // public function viewAvailableroom()
+    // {
+    //     $roomAval = room::all()->count();
+    //     dd($roomAval);
+    // }
 }

@@ -27,21 +27,32 @@
                         </div>
                         @endif
 
-                        <form action="admin/food/addpost" method="POST">
+                        <form action="{{ url('Add/food') }}" method="POST">
                              @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            
                             <div class="form-group">
-                                <label>Tên Món ăn</label>
-                                <input class="form-control" name="name" placeholder="Please Enter Món ăn Name" />
+                                <label>The name of food</label>
+                                <input class="form-control" name="food_name" placeholder="Please Enter Food name  Name" />
                             </div>
                             <div class="form-group">
-                                <label>Miêu tả</label>
+                                <label>Describe</label>
                                 <input class="form-control" name="description" placeholder="Please Enter description" />
                             </div>
                             <div class="form-group">
-                                <label>Giá</label>
+                                <label>
+                                    Price</label>
                                 <input class="form-control" name="price" placeholder="Please Enter Price" />
+                            </div>
+                            <div class="form-group">
+                                <label>Type of dish</label>
+                                <select class="form-control" name="idCategory">
+                                    <label>Thể loại</label>
+                                    @foreach ($categoryFood as $cf)
+                                    <option value selected> Select Category of Food </option>
+                                    <option value="{{$cf->id}}"> {{$cf->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             
                             <button type="submit" class="btn btn-default">Add </button>

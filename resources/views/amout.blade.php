@@ -264,12 +264,12 @@
                             <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
 
                             @if (Session::has('data'))
-
+{{-- edfokfdngjdfnj --}}
                                 <div class="container tex-center mx-auto">
                                     <form action="/pay" method="POST" class="text-center mx-auto
                                         mt-5">
                                         <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                            data-key="{{ env('RAZOR_KEY') }}"
+                                            data-key="{{ ('rzp_test_A9peA16MzvYXhT') }}"
                                             data-amount="{{ Session::get('data.amount') }}" data-currency="INR"
                                             data-order_id="{{ Session::get('data.order_id') }}"
                                             data-buttontext="Pay with Razorpay" data-name="Hotel"
