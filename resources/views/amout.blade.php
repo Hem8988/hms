@@ -196,99 +196,97 @@
 </head>
 
 <body oncontextmenu='return false' class='snippet-body'>
-    <div class="card">
-        <div class="card-top border-bottom text-center"> <a href="#"> Back to Booking</a> <span id="logo">Pardeshi
-                Resort</span> </div>
-        <div class="card-body">
-            <div class="row upper">
-                {{-- <span><i class="fa fa-check-circle-o"></i> Shopping bag</span> --}}
-                <span><i class="fa fa-check-circle-o"></i> Order details</span> <span id="payment"><span
-                        id="three">3</span>Payment</span>
-            </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="left border">
-                        <div class="row"> <span class="header">Payment</span>
-                            <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img
-                                    src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img
-                                    src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
-                        </div>
-                        @foreach ($userData as $userDatas)
-                            @foreach ($paymentData as $paymentDatas)
-                            @endforeach
-                        @endforeach
-                        <div>
-                            <form method="post" action="{{ url('payments') }}">
-                                @csrf
-                                <div>
-                                    <label for="exampleInputEmail1">Enter email</label>
-                                    <input type="text" name="email" value="
-                                        @if ($userDatas->id == $paymentDatas->rId) {{ $userDatas->email }} @endif" readonly>
-                                    <input type="hidden" name="rId" value="
-                                        @if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->rId }} @endif" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1"></label>
-                                    <input type="text" name="amount" id="exampleInputPassword1" value="@if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->amount }} @endif" readonly>
-                                </div>
-                                @if (!Session::has('data'))
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
-                                @endif
-                            </form>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-top border-bottom text-center"> <a href="reservation"> Back to Booking</a> <span
+                    id="logo">Pardeshi
+                    Resort</span> </div>
+            <div class="card-body">
+                <div class="row upper">
+                    {{-- <span><i class="fa fa-check-circle-o"></i> Shopping bag</span> --}}
+                    <span><i class="fa fa-check-circle-o"></i> Order details</span> <span id="payment">
+                        @if (Session::has('data'))
+                            <span id="three">3</span>Payment
+                    </span>
+                    @endif
                 </div>
-                <div class="col-md-5">
-                    <div class="right border">
-                        <div class="header">Order Summary</div>
-                        <p>2 items</p>
-                        <div class="row item">
-                            <div class="col-4 align-self-center"><img class="img-fluid"
-                                    src="https://i.imgur.com/79M6pU0.png"></div>
-                            <div class="col-8">
-                                <div class="row"><b>$ 26.99</b></div>
-                                <div class="row text-muted">Be Legandary Lipstick-Nude rose</div>
-                                <div class="row">Qty:1</div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="left border">
+                            <div class="row"> <span class="header">Payment</span>
+                                <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img
+                                        src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img
+                                        src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
+                            </div>
+                            @foreach ($userData as $userDatas)
+                                @foreach ($paymentData as $paymentDatas)
+                                @endforeach
+                            @endforeach
+                            <div>
+                                <form method="post" action="{{ url('payments') }}">
+                                    @csrf
+                                    <div>
+                                        <label for="exampleInputEmail1">Enter email</label>
+                                        <input type="text" name="email" value="
+                                        @if ($userDatas->id == $paymentDatas->rId) {{ $userDatas->email }} @endif" readonly>
+                                        <input type="hidden" name="rId" value="
+                                        @if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->rId }} @endif" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1"></label>
+                                        <input type="text" name="amount" id="exampleInputPassword1" value="@if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->amount }} @endif" readonly>
+                                    </div>
+                                    @if (!Session::has('data'))
+                                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    @endif
+                                </form>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row lower">
-                            <div class="col text-left">Subtotal</div>
-                            <div class="col text-right">$ 46.98</div>
-                        </div>
-                        <div class="row lower">
-                            <div class="col text-left"><b>Total to pay</b></div>
-                            <div class="col text-right"><b>$ 46.98</b></div>
-                        </div>
-                        <div class="row lower">
-                            <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
-
-                            @if (Session::has('data'))
-{{-- edfokfdngjdfnj --}}
-                                <div class="container tex-center mx-auto">
-                                    <form action="/pay" method="POST" class="text-center mx-auto
-                                        mt-5">
-                                        <script src="https://checkout.razorpay.com/v1/checkout.js"
-                                            data-key="{{ ('rzp_test_A9peA16MzvYXhT') }}"
-                                            data-amount="{{ Session::get('data.amount') }}" data-currency="INR"
-                                            data-order_id="{{ Session::get('data.order_id') }}"
-                                            data-buttontext="Pay with Razorpay" data-name="Hotel"
-                                            data-description="Test transaction" data-theme.color="#F37254">
-                                        </script>
-                                        <input type="hidden" custom="Hidden Element" name="hidden">
-                                    </form>
-
-                                </div>
-                            @else
-                        </div>
-                        @endif
-                        <p class="text-muted text-center">Complimentary Shipping & Returns</p>
                     </div>
+                    @if (Session::has('data'))
+                        <div class="col-md-5">
+                            <div class="right border">
+                                <div class="header">Order Summary</div>
+                                <div class="row item">
+                                    <div class="col-4 align-self-center"><img class="img-fluid"
+                                            src="https://i.imgur.com/79M6pU0.png"></div>
+                                    <div class="col-8">
+                                        <div class="row"></div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row lower">
+                                    <div class="col text-left">Subtotal</div>
+                                    <div class="col text-right">$:{{ $paymentDatas->amount }}</div>
+                                </div>
+                                <div class="row lower">
+                                    <div class="col text-left"><b>Total to pay</b></div>
+                                    <div class="col text-right"><b>$:{{ $paymentDatas->amount }}</b></div>
+                                </div>
+                                <div class="row lower">
+                                    <div class="container tex-center mx-auto">
+                                        <form action="/pay" method="POST" class="text-center mx-auto
+                                        mt-5">
+                                            <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                                data-key="{{ 'rzp_test_A9peA16MzvYXhT' }}"
+                                                data-amount="{{ Session::get('data.amount') }}" data-currency="INR"
+                                                data-order_id="{{ Session::get('data.order_id') }}"
+                                                data-buttontext="Pay with Razorpay" data-name="Hotel"
+                                                data-description="Test transaction" data-theme.color="#380B61">
+                                            </script>
+                                            <input type="hidden" custom="Hidden Element" name="hidden">
+                                        </form>
+
+                                    </div>
+                                @else
+                                </div>
+                    @endif
+                    {{-- <p class="text-muted text-center">Complimentary Shipping & Returns</p> --}}
                 </div>
             </div>
         </div>
-        <div> </div>
     </div>
+    
 </body>
 
 </html>

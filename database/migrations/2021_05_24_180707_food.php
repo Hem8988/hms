@@ -15,11 +15,11 @@ class Food extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('food_name');
             $table->longText('description');
             $table->integer('price');
             $table->unsignedBigInteger('idCategory');
-            $table->foreign('idCategory')->references('id')->on('category_foods');
+            $table->foreign('idCategory')->references('id')->on('category_foods')->onDelete('cascade');
             $table->timestamps();
         });
     }

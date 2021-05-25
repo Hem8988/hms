@@ -34,8 +34,6 @@ class roosAvalableController extends Controller
         $bookedRoom = room::where("status", '=', "0")->count();
 
         return [$roomAval, $availableroom, $bookedRoom];
-        // return $roomAval;
-        // return $availableroom;
-        // return $bookedRoom;
+     
     }
 }

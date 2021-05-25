@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label>
                                     Price</label>
-                                <input class="form-control" name="price" placeholder="Please Enter Price" />
+                                <input type ="number" class="form-control" name="price" placeholder="Please Enter Price" />
                             </div>
                             <div class="form-group">
                                 <label>Type of dish</label>

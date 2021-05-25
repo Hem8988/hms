@@ -17,7 +17,7 @@ class Room extends Migration
             $table->id();
             $table->string('room_name');
             $table->unsignedBigInteger('idCategory');
-            // $table->foreign('idCategory')->references('id')->on('room_categorys'); 
+            $table->foreign('idCategory')->references('id')->on('room__categories')->onDelete('cascade');
             $table->unsignedBigInteger('status');
             $table->timestamps();
         });

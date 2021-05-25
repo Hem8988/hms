@@ -1,10 +1,10 @@
 @extends('frontend.layouts.index')
 @section('content')
-    @foreach ($infor as $infor )
+    @foreach ($infor as $infor)
     @endforeach
-    @foreach ($about as $about )
+    @foreach ($about as $about)
     @endforeach
-    @foreach ($description as $description )
+    @foreach ($description as $description)
     @endforeach
 
     <!--  Welcome -->
@@ -15,7 +15,11 @@
                 <div class="col-md-10 text-center" data-aos="fade-up">
                     <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span
                             class="fa fa-star text-primary"></span> Hotel</span>
-                    <h1 class="heading">{{ $infor->slogan }}</h1>
+                    <h1 class="heading">
+                        @if (!empty($info->slogan))
+                            {{ $infor->slogan }}
+                        @endif
+                    </h1>
                     <a href="{{ route('register') }}" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve
                         Now</a>
                 </div>
@@ -41,10 +45,14 @@
                 </div>
                 <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
                     <h2 class="heading">Welcome!</h2>
-                    <p class="mb-4">{{ $about->body }}</p>
+                    <p class="mb-4">
+                        @if (!empty($about->body))
+                            {{ $about->body }}
+                        @endif
+                    </p>
                     <p><a href="about" class="btn btn-primary text-white py-2 mr-3">Learn More</a> <span
-                            class="mr-3 font-family-serif"><em>or</em></span> <a href={{ $about->video }} data-fancybox
-                            class="text-uppercase letter-spacing-1">See video</a></p>
+                            class="mr-3 font-family-serif"><em>or</em></span> <a href=@if (!empty($about->video)) {{ $about->video }} @endif
+                            data-fancybox class="text-uppercase letter-spacing-1">See video</a></p>
                 </div>
 
             </div>
@@ -65,7 +73,11 @@
             <div class="row justify-content-center text-center mb-5">
                 <div class="col-md-7">
                     <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
-                    <p class="text-white" data-aos="fade" data-aos-delay="100">{{ $description->menu }}</p>
+                    <p class="text-white" data-aos="fade" data-aos-delay="100">
+                        @if (!empty($description->menu))
+                            {{ $description->menu }}
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="food-menu-tabs" data-aos="fade">
@@ -86,17 +98,18 @@
                             aria-labelledby="{{ $fc->name }}-tab">
                             <div class="row">
 
-                               @foreach ($food as $f)
+                                @foreach ($food as $f)
 
                                     @if ($i == 1)
                                         <div class="col-md-6">
                                     @endif
                                     <div class="food-menu mb-5">
                                         <span class="d-block text-primary h4 mb-3">${{ $f->price }}</span>
-                                        <h3 class="text-white"><a href="#" class="text-white">{{ $f->food_name }}</a></h3>
+                                        <h3 class="text-white"><a href="#" class="text-white">{{ $f->food_name }}</a>
+                                        </h3>
                                         <p class="text-white text-opacity-7">{{ $f->description }}</p>
                                     </div>
-                                    @if ($i == ($fc->id) / 2)
+                                    @if ($i == $fc->id / 2)
                             </div>
                             <div class="col-md-6">
                     @endif
@@ -160,7 +173,11 @@
             <div class="row justify-content-center text-center mb-5">
                 <div class="col-md-7">
                     <h2 class="heading" data-aos="fade-up">Events</h2>
-                    <p data-aos="fade-up">{{ $description->event }} </p>
+                    <p data-aos="fade-up">
+                        @if (!empty($description->event))
+                            {{ $description->event }}
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="row">

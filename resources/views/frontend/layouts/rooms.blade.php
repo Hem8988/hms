@@ -1,4 +1,3 @@
-
 <section class="section">
     <div class="container">
         <div class="row justify-content-center text-center mb-5">
@@ -6,7 +5,11 @@
                 <a href="rooms">
                     <h2 class="heading" data-aos="fade-up">Rooms &amp; Suitess</h2>
                 </a>
-                <p data-aos="fade-up" data-aos-delay="100">{{ $description->room }}</p>
+                <p data-aos="fade-up" data-aos-delay="100">
+                    @if (!empty($description->room))
+                        {{ $description->room }}
+                    @endif
+                </p>
             </div>
         </div>
         <div class="row">

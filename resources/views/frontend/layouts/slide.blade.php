@@ -3,7 +3,11 @@
          <div class="row justify-content-center text-center mb-5">
              <div class="col-md-7">
                  <h2 class="heading" data-aos="fade-up">Photos</h2>
-                 <p data-aos="fade-up" data-aos-delay="100">{{ $description->photo }}</p>
+                 <p data-aos="fade-up" data-aos-delay="100">
+                     @if (!empty($description->photo))
+                         {{ $description->photo }}
+                     @endif
+                 </p>
              </div>
          </div>
          <div class="row">

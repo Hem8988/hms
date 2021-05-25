@@ -5,7 +5,8 @@
                 <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="{{ route('register') }}" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve
+                    Now</a>
             </div>
         </div>
     </div>
@@ -30,13 +31,24 @@
             <div class="col-md-3 mb-5 pr-md-5 contact-info">
                 <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
                 <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span>
-                    <span> {{ $infor->address }}</span>
+                    <span>
+                        @if (!empty($infor->address))
+                            {{ $infor->address }}
+                        @endif
+                    </span>
                 </p>
                 <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span>
-                    <span> {{ $infor->phone_number }}</span>
+                    <span>
+                        @if (!empty($infor->phone_number))
+                            {{ $infor->phone_number }}
+                        @endif
+                    </span>
                 </p>
                 <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span>
-                        {{ $infor->email }}</span></p>
+                        @if (!empty($infor->email))
+                            {{ $infor->email }}
+                        @endif
+                    </span></p>
             </div>
 
         </div>
@@ -51,11 +63,11 @@
             </p>
 
             <p class="col-md-6 text-right social">
-                 {{-- <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-tripadvisor"></span></a> --}}
-            <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-facebook"></span></a>
-            <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-twitter"></span></a>
-            <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-linkedin"></span></a>
-            <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-vimeo"></span></a> 
+                {{-- <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-tripadvisor"></span></a> --}}
+                <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-facebook"></span></a>
+                <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-twitter"></span></a>
+                <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-linkedin"></span></a>
+                <a href="https://www.facebook.com/huynhtan.duy.988"><span class="fa fa-vimeo"></span></a>
             </p>
         </div>
     </div>
