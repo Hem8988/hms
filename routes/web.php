@@ -49,22 +49,29 @@ Route::get('/about', [PageController::class, 'About']);
 Route::get('/event', [PageController::class, 'Event']);
 Route::get('/rooms', [PageController::class, 'Rooms']);
 
-
-// Route::get('rooms','PageController@Rooms');	
 //route for select country state and city
-Route::get('/reservation', [countryselelct::class, 'getCountry'])->name('reservation');
-Route::post('/get-state', [countryselelct::class, 'fetchState']);
-Route::post('/get-city', [countryselelct::class, 'fetchCity']);
-
-// Route::get('/home', [countryselelct::class, 'roomCategories'])
-
-Route::get('/RoomsAvalability', [roosAvalableController::class, 'view']);
-Route::post('/error', [reservationController::class, 'insertreservation'])->name('error');
-Route::post('/reservation', [reservationController::class, 'insertreservation'])->name('reservation-done');
-Route::get('/reservation-Information', [reinformationController::class, 'reservationInformation']);
-Route::get('information/{id}', [reinformationController::class, 'getdetail']);
-Route::post('/reservation-Cancellation', [reinformationController::class, 'reaervationCanclling']);
-
+Route::group(['middleware' => ['auth']], function () {
+    // your routes
+    Route::get('/reservation', [countryselelct::class, 'getCountry'])->name('reservation');
+    Route::post('/get-state', [countryselelct::class, 'fetchState']);
+    Route::post('/get-city', [countryselelct::class, 'fetchCity']);
+    Route::post('/get-room', [roomController::class, 'getRoom']);
+    
+    // reservatio Routes
+    Route::get('/RoomsAvalability', [roosAvalableController::class, 'view']);
+    Route::post('/error', [reservationController::class, 'insertreservation'])->name('error');
+    Route::post('/reservation', [reservationController::class, 'insertreservation'])->name('reservation-done');
+    Route::get('/reservation-Information', [reinformationController::class, 'reservationInformation']);
+    Route::get('information/{id}', [reinformationController::class, 'getdetail']);
+    Route::post('/reservation-Cancellation', [reinformationController::class, 'reaervationCanclling']);
+    
+    //payment route
+    Route::get('/amount', [paymentcontroller::class, 'getamount'])->name('index');
+    Route::get('/success', [paymentcontroller::class, 'success']);
+    Route::post('/payments', [paymentcontroller::class, 'payment']);
+    Route::post('/pay', [paymentcontroller::class, 'pay']);
+    Route::post('/error', [paymentcontroller::class, 'error']);
+});
 // route for admin login
 Route::group(['prefix' => 'admin'], function () {
 
@@ -96,19 +103,8 @@ Route::get('/addrRoom', function () {
 Route::post('/addrRoom', [roomController::class, 'addRoom']);
 Route::get('/Listofroom', [roomController::class, 'room_list'])->name('admin.room.list');
 Route::get('/deleteRoom/{id}', [roomController::class, 'delete']);
-Route::get('/edit/{id}', [roomController::class, 'ShowEditRoom']);
+Route::get('/edit/room/{id}', [roomController::class, 'ShowEditRoom']);
 Route::post('/editRoom/{id}', [roomController::class, 'EditRoom']);
-
-
-
-//payment route
-Route::get('/amount', [paymentcontroller::class, 'getamount'])->name('index');
-Route::get('/success', [paymentcontroller::class, 'success']);
-Route::post('/payments', [paymentcontroller::class, 'payment']);
-Route::post('/pay', [paymentcontroller::class, 'pay']);
-Route::post('/error', [paymentcontroller::class, 'error']);
-
-
 
 
 Route::get('AddEvent', function () {
@@ -116,7 +112,7 @@ Route::get('AddEvent', function () {
 });
 Route::post('/EventAdd', [EventController::class, 'AddPost'])->name('admin.event.add');
 Route::get('/list', [EventController::class, 'getEvent'])->name('admin.event.list');
-Route::get('/edit/{id}', [EventController::class, 'Edit']);
+Route::get('/edit/Event/{id}', [EventController::class, 'Edit']);
 Route::post('/editEvent/{id}', [EventController::class, 'EditPost']);
 Route::get('/deleteEvent/{id}', [EventController::class, 'Delete']);
 

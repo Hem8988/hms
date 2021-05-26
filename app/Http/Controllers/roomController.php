@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\room;
+use App\Models\room_Category;
 
 class roomController extends Controller
 {
@@ -93,5 +94,21 @@ class roomController extends Controller
         $room->Status = $request->status;
         $room->save();
         return redirect('Listofroom')->with('annoucement', 'Successfully edited room information');
+    }
+
+    public  static function getRoomCategory()
+    {
+        // $roomList = room::all();
+        $data['room__categories'] = room_Category::get(["name", "id"]);
+        return $data;
+    }
+
+    public function getRoom(Request $request)
+    {
+        // dd($request->all);
+        $data['rooms'] = room::where("idCategory", $request->id)
+            ->where('status', '=', 1)
+            ->get(["room_name", "id"]);
+        return response()->json($data);
     }
 }

@@ -1,7 +1,10 @@
 @extends('admin.layouts.admin')
 
 @section('content')
-
+<?php
+use App\Http\Controllers\RoomCategoryController;
+$categories = RoomCategoryController::Allroom();
+?>
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -58,7 +61,7 @@
                                 </td>
 
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
-                                        href="edit/{{ $r->id }}">Edit</a></td>
+                                        href="edit/room/{{ $r->id }}">Edit</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a
                                         href="deleteRoom/{{ $r->id }}"
                                         onclick="return confirm('Are you sure you want to delete?');"> Delete</a></td>

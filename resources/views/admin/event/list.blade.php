@@ -35,7 +35,7 @@
                                     <td>{{$ev->name}}</td>
                                     <td>{{$ev->body}}</td>
                                     <td> <img style="max-width: 200px;max-height: 200px;" src="{{ asset('home/event/image/' . $ev->image) }}"> </td>
-                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="edit/{{$ev->id}}">Edit</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="edit/Event/{{$ev->id}}">Edit</a></td>
                                     <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="deleteEvent/{{$ev->id}}" onclick="return confirm('Are you sure you want to delete?');"> Delete</a></td>
                                     
                                 </tr>

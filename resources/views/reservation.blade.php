@@ -3,7 +3,9 @@
 @section('content')
 <?php
 use App\Http\Controllers\RoomCategoryController;
+use App\Http\Controllers\roomController;
 $categories = RoomCategoryController::Allroom();
+$data = roomController::getRoomCategory();
 ?>
     <div id="page-wrapper">
         <div id="page-inner">
@@ -287,7 +289,7 @@ $categories = RoomCategoryController::Allroom();
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
                 },
-                url: "{{ url('/get-state') }}",
+                url: "{{ url('/get-room') }}",
                 type: "POST",
                 data: {
                     id: idcategory,

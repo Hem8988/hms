@@ -2,10 +2,11 @@
 
 
 @section('content')
-    @php
-    // dd($reservation);
-    @endphp
-    <!-- Page Content -->
+{{-- @if (!empty($Auth::user()))
+    
+@else
+    
+@endif --}}
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
