@@ -12,10 +12,6 @@
                     <span></span>
                     <span></span>
                 </div>
-                {{-- @php
-                    dd(Auth::user());
-                @endphp --}}
-                <!-- END menu-toggle -->
                 <div class="site-navbar js-site-navbar">
                     <nav role="navigation">
                         <div class="container">

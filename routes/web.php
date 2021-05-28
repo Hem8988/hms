@@ -19,12 +19,14 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\Food_categoryController;
 use App\Models\room_Category;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\category_food;
-use App\Models\room;
+use Illuminate\Http\Request;
 use App\Models\user;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\ProfileController;
+
 
 
 
@@ -43,20 +45,44 @@ use App\Http\Controllers\FoodController;
 
 
 Auth::routes();
+// Auth::routes(['verify' => true]);
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/reservation');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+
+
+
+
 // frontend 
 Route::get('/', [PageController::class, 'Home']);
 Route::get('/about', [PageController::class, 'About']);
 Route::get('/event', [PageController::class, 'Event']);
 Route::get('/rooms', [PageController::class, 'Rooms']);
 
+
+
 //route for select country state and city
-Route::group(['middleware' => ['auth']], function () {
-    // your routes
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    //  reservations, dynamic state, city Route
     Route::get('/reservation', [countryselelct::class, 'getCountry'])->name('reservation');
     Route::post('/get-state', [countryselelct::class, 'fetchState']);
     Route::post('/get-city', [countryselelct::class, 'fetchCity']);
     Route::post('/get-room', [roomController::class, 'getRoom']);
-    
+
     // reservatio Routes
     Route::get('/RoomsAvalability', [roosAvalableController::class, 'view']);
     Route::post('/error', [reservationController::class, 'insertreservation'])->name('error');
@@ -64,7 +90,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reservation-Information', [reinformationController::class, 'reservationInformation']);
     Route::get('information/{id}', [reinformationController::class, 'getdetail']);
     Route::post('/reservation-Cancellation', [reinformationController::class, 'reaervationCanclling']);
-    
+
+    //profile page
+    Route::get('/Your/profile', [ProfileController::class, 'viewProfile']);
+
     //payment route
     Route::get('/amount', [paymentcontroller::class, 'getamount'])->name('index');
     Route::get('/success', [paymentcontroller::class, 'success']);
@@ -72,18 +101,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/pay', [paymentcontroller::class, 'pay']);
     Route::post('/error', [paymentcontroller::class, 'error']);
 });
+
+
 // route for admin login
 Route::group(['prefix' => 'admin'], function () {
 
-    Route::group(['middleware' => 'admin.guest'], function () {
+    Route::group(['middleware' => ['admin.guest']], function () {
         Route::view('login', 'admin.login')->name('admin.login');
         Route::post('login', [App\Http\Controllers\AdminController::class, 'login'])->name('admin.auth');
     });
-    Route::group(['middleware' => 'admin.auth'], function () {
+    Route::group(['middleware' => ['admin.auth']], function () {
         Route::view('dashboard', 'admin.home')->name('admin.home');
         Route::post('logout', [App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
     });
 });
+
 
 //route for add room category
 Route::get('/roomcategory', function () {
@@ -94,6 +126,8 @@ Route::get('/roomlist', [RoomCategoryController::class, 'roomList'])->name('admi
 Route::get('/delete/{id}', [RoomCategoryController::class, 'delete']);
 Route::get('/Edit/{id}', [RoomCategoryController::class, 'ShowEditCategory']);
 Route::post('/EditRoom/{id}', [RoomCategoryController::class, 'EditCategory']);
+
+
 
 // route for add room
 Route::get('/addrRoom', function () {
@@ -107,6 +141,7 @@ Route::get('/edit/room/{id}', [roomController::class, 'ShowEditRoom']);
 Route::post('/editRoom/{id}', [roomController::class, 'EditRoom']);
 
 
+//Route for Event
 Route::get('AddEvent', function () {
     return view('admin.event.add');
 });
@@ -117,23 +152,23 @@ Route::post('/editEvent/{id}', [EventController::class, 'EditPost']);
 Route::get('/deleteEvent/{id}', [EventController::class, 'Delete']);
 
 
-
+// Route for About
 Route::get('/AboutList', [AboutController::class, 'getAbout'])->name('admin.about.list');
 Route::get('/Aboutedit', [AboutController::class, 'edit']);
 Route::post('/AboutEdit', [AboutController::class, 'Aboutpost']);
 
-
+// Route for Description
 Route::get('/descriptionList', [DescriptionController::class, 'getDescription'])->name('admin.description.list');
 Route::get('/Description&&Show&&show', [DescriptionController::class, 'editDescriptionShow']);
 Route::post('/edit&&Description', [DescriptionController::class, 'editDescription']);
 
-
+// Route for information
 Route::get('/InformationList', [InformationController::class, 'getInformation'])->name('admin.information.list');
 Route::get('/Information&&Edit&&show', [InformationController::class, 'InformationeditShow']);
 Route::post('/Information&&Edit', [InformationController::class, 'informationEdit']);
 
 
-
+// route for Slide
 Route::get('slider', function () {
     return view('admin.slide.add');
 });
@@ -144,6 +179,7 @@ Route::post('/Slide&&edit/{id}', [SlideController::class, 'Editslide']);
 Route::get('/delete&&slide/{id}', [SlideController::class, 'slideDelete']);
 
 
+// Route for  Reservation list
 Route::get('List&&Reservation', function () {
     $reservation = DB::table('reservations')
         ->join('countries', 'reservations.country', "=", 'countries.country_id')
@@ -156,17 +192,20 @@ Route::get('List&&Reservation', function () {
     // dd($ReservationGet);
     return view('admin.reservation.list', compact('reservation'));
 });
-
 Route::get('viewDdetails/{id}', [reservationController::class, 'getdetail']);
 Route::get('/Edit&&detail/{id}', [reservationController::class, 'Edit']);
 Route::get('/Edit&&detail%%Post/{id}', [reservationController::class, 'EditPost']);
 Route::get('/delete&&detail/{id}', [reservationController::class, 'Delete']);
+
+
 
 //list of users
 Route::get('list&&ouer', function () {
     $user = user::all();
     return view('admin.user.list', compact('user'));
 });
+
+
 
 //foodCategory
 Route::get('addFoodCategory', function () {
@@ -182,7 +221,7 @@ Route::post('/Edit/categoryFood/{id}', [Food_categoryController::class, 'Editfoo
 Route::get('/delete&&foodCategory/{id}', [Food_categoryController::class, 'Delete']);
 
 
-
+// route for food
 Route::get('addFood', function () {
     $categoryFood = category_food::all();
     return view('admin.food.add', compact('categoryFood'));

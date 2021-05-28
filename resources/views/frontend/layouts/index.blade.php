@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HOTEL MANAGMENT SYSTEM</title>
+    <title> @yield('title') </title>
     <base href="{{ asset('') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
@@ -24,9 +24,17 @@
     <link rel="stylesheet" href="{{ asset('home/css/fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('home/fonts/ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('home/fonts/fontawesome/css/font-awesome.min.css') }}">
-
     <!-- Theme Style -->
     <link rel="stylesheet" href="{{ asset('home/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('loginRegistrationcs/css/style.css') }}">
+    <style>
+        .required {
+            color: red;
+        }
+
+        
+    </style>
 </head>
 
 <body>
