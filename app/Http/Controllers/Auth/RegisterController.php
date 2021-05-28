@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -51,13 +51,13 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-            // 'name' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'phone' => ['required',  'max:10', 'unique:users'],
-            // 'address' => ['required'],
-            // 'pin' => ['required'],
-            // 'profile' => 'required',
-            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required',  'max:10', 'unique:users'],
+            'address' => ['required'],
+            'pin' => ['required'],
+            'profile' =>  'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -70,14 +70,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $request = request();
-        
-        $profileImage = $request->file('profile_picture');
-        dd($profileImage);
-        // $profileImageSaveAsName = time() . Auth::id() . "-profile." . $profileImage->getClientOriginalExtension();
 
-        // $upload_path = 'profile_images/';
-        // $profile_image_url = $upload_path . $profileImageSaveAsName;
-        // $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+        $profileImage = $request->file('profile');
+        $profileImageSaveAsName = time() . Auth::id() . "-profile." . $profileImage->getClientOriginalExtension();
+        
+        $upload_path = 'profile_images/';
+        $profile_image_url = $profileImageSaveAsName;
+        $success = $profileImage->move($upload_path, $profileImageSaveAsName);
+        // dd($success);
 
 
         return User::create([
@@ -87,7 +87,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'address' => $data['address'],
             'pin' => $data['pin'],
-            'profile' => $data['profile'],
+            'profile' => $profile_image_url,
             'password' => Hash::make($data['password']),
         ]);
     }

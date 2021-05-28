@@ -2,9 +2,9 @@
 
 
 @section('content')
-    {{-- @php
-    dd($user);
-    @endphp --}}
+    @php
+    // dd($user);
+    @endphp
     @foreach ($user as $user)
     @endforeach
     <!-- Favicon -->
@@ -12,7 +12,7 @@
         <!-- Header -->
         <div class="one">
             <div class="header pb-12 d-flex align-items-center"
-                style="min-height: 500px; background-image: url({{ asset('profile/images/theme/profile-cover.jpg') }}); background-size: cover; background-position: center top;">
+                style="min-height: 500px; background-image: url({{ asset('profile_images/' . $user->profile) }}); background-size: cover; background-position: center top;">
                 <!-- Mask -->
                 <span class="mask bg-gradient-default opacity-8"></span>
                 <!-- Header container -->
@@ -375,9 +375,11 @@
                                                 icon: "error",
                                                 timer: 80000
                                             });
-                                            setTimeout(function() {
-                                                location.reload();
-                                            }, 60000);
+                                            location.reload(
+                                                setTimeout(function() {
+                                                    location = ''
+                                                }, 20000)
+                                            );
 
 
                                         }
