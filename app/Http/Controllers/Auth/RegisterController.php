@@ -51,13 +51,13 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required',  'max:10', 'unique:users'],
-            'address' => ['required'],
-            'pin' => ['required'],
-            'profile' => 'required',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'phone' => ['required',  'max:10', 'unique:users'],
+            // 'address' => ['required'],
+            // 'pin' => ['required'],
+            // 'profile' => 'required',
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -69,10 +69,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // $request = request();
-        // dd($request->all());
-
-        // $profileImage = $request->file('profile_picture');
+        $request = request();
+        
+        $profileImage = $request->file('profile_picture');
+        dd($profileImage);
         // $profileImageSaveAsName = time() . Auth::id() . "-profile." . $profileImage->getClientOriginalExtension();
 
         // $upload_path = 'profile_images/';

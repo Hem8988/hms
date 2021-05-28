@@ -92,9 +92,9 @@
                 </ul>
                 <div class="tab-content py-5" id="myTabContent">
 
-                    @foreach ($food_category as $fc)
+                    @foreach ($food_category as $f)
                         <?php $i = 1; ?>
-                        <div class="tab-pane fade @if ($fc->id == 6) show active @endif text-left" id={{ $fc->name }} role="tabpanel"
+                        <div class="tab-pane fade @if ($fc->id == 1) show active @endif text-left" id={{ $fc->name }} role="tabpanel"
                             aria-labelledby="{{ $fc->name }}-tab">
                             <div class="row">
 

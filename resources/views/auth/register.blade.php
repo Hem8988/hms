@@ -34,7 +34,7 @@
                         alt="Booking Image">
                 </div>
                 <div class="booking-form">
-                    <form method="POST" id="booking-form" action="{{ route('register') }}">
+                    <form method="POST" id="booking-form" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <h2>Registration </h2>
                         <div class="form-group form-input">

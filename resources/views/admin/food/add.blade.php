@@ -49,7 +49,7 @@
                                 <select class="form-control" name="idCategory">
                                     <label>Thể loại</label>
                                     @foreach ($categoryFood as $cf)
-                                    <option value selected> Select Category of Food </option>
+                                    {{-- <option value selected> Select Category of Food </option> --}}
                                     <option value="{{$cf->id}}"> {{$cf->name}}</option>
                                     @endforeach
                                 </select>
