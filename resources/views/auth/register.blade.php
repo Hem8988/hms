@@ -77,10 +77,6 @@
                         @if ($errors->has('pin'))
                             <span class="text-danger">{{ $errors->first('pin') }}</span>
                         @endif
-                        {{-- <div class="form-group form-input">
-                            <input type="file" name="profile" id="profile" />
-                            <label for="profile" class="form-label"><span class="required">*</span></label>
-                        </div> --}}
                         <div class="form-group">
                             <label>Image </label>
                             <input type="file" class="form-control" name="profile" />

@@ -20,10 +20,10 @@ class CreateUsersTable extends Migration
             $table->bigInteger('phone')->unique();
             $table->longText('address');
             $table->integer('pin');
-            $table->string('profile');
+            $table->string('profile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_admin')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

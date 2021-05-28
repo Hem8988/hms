@@ -185,6 +185,12 @@ input[type=radio] {
     -ms-appearance: radio !important;
 }
 
+input#remember {
+    /* margin-left: 750%; */
+    position: relative;
+}
+
+
 img {
     /* max-width: 100%; */
     height: auto;
@@ -345,7 +351,7 @@ select {
     color: #fff;
     background: transparent;
     border-bottom: 1px solid #999;
-    padding: 4px 0;
+    padding: 8px;
 }
 
 input:focus,
@@ -355,6 +361,10 @@ select:focus {
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px transparent inset;
+}
+
+a#registerhem {
+    margin-left: 30%;
 }
 
 input::-webkit-input-placeholder {

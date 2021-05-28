@@ -93,6 +93,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //profile page
     Route::get('/Your/profile', [ProfileController::class, 'viewProfile']);
+    Route::post('Your/edit/profile/{id}', [ProfileController::class,'editProfileShow']);
+    Route::post('Your/edit/password/{id}', [ProfileController::class,'editPassword']);
 
     //payment route
     Route::get('/amount', [paymentcontroller::class, 'getamount'])->name('index');

@@ -1913,8 +1913,8 @@ th {
 }
 
 .table-bordered {
-    border: 2px solid rgb(0, 17, 250);
-    border-radius: 20px;
+    border: 2px solid rgb(203, 203, 209);
+    /* border-radius: 20px; */
 }
 
 .table-bordered>thead>tr>th,
@@ -1923,8 +1923,8 @@ th {
 .table-bordered>thead>tr>td,
 .table-bordered>tbody>tr>td,
 .table-bordered>tfoot>tr>td {
-    border: 2px solid rgb(0, 17, 250);
-    border-radius: 20px;
+    border: 2px solid rgb(185, 186, 201);
+    /* border-radius: 20px; */
 }
 
 .table-bordered>thead>tr>th,

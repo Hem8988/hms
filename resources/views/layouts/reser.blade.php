@@ -54,13 +54,13 @@
                     </li>
                     <li>
                         <a href="{{ url('reservation-Information') }}"><img
-                                src="https://img.icons8.com/bubbles/40/000000/information.png" />Reservation
-                                Information</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('Your/profile') }}"><img
-                                        src="https://img.icons8.com/office/30/000000/administrator-male--v1.png" />Profile </a>
-                            </li>
+                                src="https://img.icons8.com/bubbles/30/000000/information.png" />Reservation
+                            Information</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('Your/profile') }}"><img
+                                src="https://img.icons8.com/office/30/000000/administrator-male--v1.png" />Profile </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

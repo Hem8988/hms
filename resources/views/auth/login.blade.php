@@ -130,18 +130,18 @@
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif
 
-                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                {{ old('remember') ? 'checked' : '' }}>
+                        </div>
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                            <div class="col-md-12 offset-md-4">
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
                             </div>
                         </div>
+
 
 
                         <div class="form-group row mb-0">
@@ -156,20 +156,9 @@
                                     </a>
                                 @endif
                             </div>
+                            <a href="{{ route('register') }}" id="registerhem">
+                                {{ __('Click here if you want to register') }} </a>
                         </div>
-
-                        {{-- <div class="form-group form-input">
-                            <input type="password" name="password_confirmation" id="password_confirmation" />
-                            <label for="password" class="form-label">{{ __('Confirm Password') }}<span
-                                    class="required">*</span></label>
-                        </div>
-                        @if ($errors->has('password_confirmation'))
-                            <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-                        @endif --}}
-                        {{-- <div class="form-submit">
-                            <input type="submit" value="Register" class="submit" id="submit" name="submit" />
-                            <a href="{{ route('login') }}"> click here if you are already Register </a>
-                        </div> --}}
                     </form>
                 </div>
             </div>
