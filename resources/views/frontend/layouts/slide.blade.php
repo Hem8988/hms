@@ -16,7 +16,7 @@
                      data-aos-delay="200">
                      @foreach ($slide as $sl)
                          <div class="slider-item">
-                             <a href={{ $sl->link }} data-fancybox="images"><img
+                             <a href={{ $sl->link }} data-fancybox="images" id = "fancybox"><img
                                      src={{ asset('home/slide/images/' . $sl->link) }} alt="Image placeholder"
                                      class="img-fluid">{{ $sl->caption }}</a>
                          </div>

@@ -16,42 +16,42 @@
             </div>
             <table class="table table-bordered table-striped  table-hover table-primary" style="width:70%">
                 <tr>
-                    <th style="width:20%">id</th>
+                    <th style="width:20%">Id</th>
                     <td>{{ $r->id }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">title</th>
+                    <th style="width:20%">Title</th>
                     <td>{{ $r->title }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">fname</th>
+                    <th style="width:20%">Fname</th>
                     <td>{{ $r->fname }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">lname</th>
+                    <th style="width:20%">Lname</th>
                     <td>{{ $r->lname }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">email</th>
+                    <th style="width:20%">Email</th>
                     <td>{{ $r->email }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">country</th>
+                    <th style="width:20%">Country</th>
                     <td>{{ $r->country_name }}</td>
 
                 </tr>
                 <tr>
-                    <th style="width:20%">state</th>
+                    <th style="width:20%">State</th>
                     <td>{{ $r->state_name }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">city</th>
+                    <th style="width:20%">Cty</th>
                     <td>{{ $r->city_name }}</td>
 
                 </tr>
 
                 <tr>
-                    <th sstyle="width:20%">phone</th>
+                    <th sstyle="width:20%">Phone</th>
                     <td>{{ $r->phone }}</td>
 
                 </tr>
@@ -101,7 +101,7 @@
                     <td>{{ $pay->amount }}</td>
                 </tr>
                 <tr>
-                    <th style="width:20%">payment Status</th>
+                    <th style="width:20%">Payment Status</th>
                     <td>
                         @if ($pay->payment_done == 1)
 

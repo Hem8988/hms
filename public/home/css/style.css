@@ -1269,3 +1269,13 @@ textarea.form-control {
         background: #ffba5a;
         color: #fff;
         border-radius: 50%; }
+
+        img.img-fluid.mb-3 {
+          height: 300px;
+          width: 500px;
+      }
+
+      img.img-fluid {
+        height: 450px;
+      
+    }

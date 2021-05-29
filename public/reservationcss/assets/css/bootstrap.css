@@ -1875,6 +1875,7 @@ th {
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
+    text-align: center;
     padding: 10px;
     line-height: 1.42857143;
     vertical-align: top;

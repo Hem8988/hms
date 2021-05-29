@@ -22,7 +22,7 @@
                             <tr align="center">
                                 <th>ID</th>
                                 <th>Event Name</th>
-                                <th>content</th>
+                                <th>Content</th>
                                 <th>Picture</th>
                                 <th>Delete</th>
                                 <th>Edit</th>

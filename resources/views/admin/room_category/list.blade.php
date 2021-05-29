@@ -23,9 +23,9 @@
                     <thead>
                         <tr align="center">
                             <th>ID</th>
-                            <th>ROOM Type </th>
+                            <th>Rooms Type </th>
                             <th>Image</th>
-                            <th>Price</th>
+                            <th>Price ₹</th>
                             <th>Description</th>
                             <th>Edit</th>
                             <th>Delete</th>

@@ -26,8 +26,8 @@
                                 <th>ID</th>
                                 <th>The name of food</th>
                                 <th>Describe</th>
-                                <th>Price</th>
-                                <th>categoryFood</th>
+                                <th>Price ₹</th>
+                                <th>Category Of Food</th>
                                 <th>Delete</th>
                                 <th>Edit</th>
                             </tr>

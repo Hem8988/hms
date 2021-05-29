@@ -1996,3 +1996,7 @@ pre code {
     background-color: rgb(93, 77, 185);
     padding-left:150px;
 }
+
+th {
+    text-align: center;
+}

@@ -22,11 +22,11 @@
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr align="center">
-                            <th>id</th>
-                            <th>title</th>
-                            <th>fname</th>
-                            <th>lname</th>
-                            <th>email</th>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Fname</th>
+                            <th>Lname</th>
+                            <th>Email</th>
                             <th>View Details</th>
                             {{-- <th>country</th>
                             <th>state</th>
