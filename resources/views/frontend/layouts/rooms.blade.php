@@ -22,7 +22,7 @@
                         </figure>
                         <div class="p-3 text-center room-info">
                             <h2>{{ $cate->name }}</h2>
-                            <span class="text-uppercase letter-spacing-1">{{ $cate->price }}$ / per night</span>
+                            <span class="text-uppercase letter-spacing-1">₹{{ $cate->price }} / per night</span>
                         </div>
                     </a>
                 </div>

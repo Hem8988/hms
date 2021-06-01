@@ -25,8 +25,12 @@ class AdminController extends Controller
 
         return redirect()->route('admin.login')->with('status', 'Failed to process Login');
     }
-    public function logout()
+
+
+    public function Logout()
     {
+        // $guard = array_keys(config('auth.guard'));
+        // dd($guard);
         if (Auth::guard('admin')->logout()) {
             return redirect()->route('admin.login')->with('status', 'logout sucessfully');
         }

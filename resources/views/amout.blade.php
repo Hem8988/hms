@@ -198,8 +198,8 @@
 <body oncontextmenu='return false' class='snippet-body'>
     <div class="container">
         <div class="card">
-            <div class="card-top border-bottom text-center"> <a href="reservation"> Back to Booking</a> <span
-                    id="logo">Pardeshi
+            <div class="card-top border-bot tom text-center"> <a href="reservation"> Back to Booking</a> <span
+                    id="logo">Pardesi
                     Resort</span> </div>
             <div class="card-body">
                 <div class="row upper">
@@ -234,7 +234,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1"></label>
-                                        <input type="text" name="amount" id="exampleInputPassword1" value="@if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->amount }} @endif" readonly>
+                                        <input type="text" name="amount" id="exampleamout" value="@if ($userDatas->id == $paymentDatas->rId) {{ $paymentDatas->amount }} @endif" readonly>
                                     </div>
                                     @if (!Session::has('data'))
                                         <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -248,8 +248,8 @@
                             <div class="right border">
                                 <div class="header">Order Summary</div>
                                 <div class="row item">
-                                    <div class="col-4 align-self-center"><img class="img-fluid"
-                                            src="https://i.imgur.com/79M6pU0.png"></div>
+                                    {{-- <div class="col-4 align-self-center"><img class="img-fluid"
+                                            src="https://i.imgur.com/79M6pU0.png"></div> --}}
                                     <div class="col-8">
                                         <div class="row"></div>
                                     </div>
@@ -257,11 +257,11 @@
                                 <hr>
                                 <div class="row lower">
                                     <div class="col text-left">Subtotal</div>
-                                    <div class="col text-right">$:{{ $paymentDatas->amount }}</div>
+                                    <div class="col text-right">₹{{ $paymentDatas->amount }}</div>
                                 </div>
                                 <div class="row lower">
                                     <div class="col text-left"><b>Total to pay</b></div>
-                                    <div class="col text-right"><b>$:{{ $paymentDatas->amount }}</b></div>
+                                    <div class="col text-right"><b>₹{{ $paymentDatas->amount }}</b></div>
                                 </div>
                                 <div class="row lower">
                                     <div class="container tex-center mx-auto">

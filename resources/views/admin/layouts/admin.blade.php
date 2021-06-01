@@ -67,22 +67,29 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        @if (Auth::check())
+                        <form action="{{ route('admin.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">
+                                {{ __('Logout') }}
+                            </button>
+                        </form>
+                        {{-- <a href="{{ url('admin/admin/logout') }}"> logout </a> --}}
+                        {{-- @if (Auth::check())
                             <li><i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }}
                             </li>
                             <li><a href="admin/user/sua"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                                 <i class="ni ni-user-run"></i>
                                 {{ __('Logout') }}
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
 
-                        @endif
+                        @endif --}}
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>

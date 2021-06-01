@@ -41,7 +41,8 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a href="../index.php"><img src="https://img.icons8.com/dusk/30/000000/home.png" /> Homepage</a>
+                        <a href="{{ url('Your/profile') }}"><img
+                                src="https://img.icons8.com/office/30/000000/administrator-male--v1.png" />Profile </a>
                     </li>
                     <li>
                         <a href="{{ url('RoomsAvalability') }}"><img
@@ -58,8 +59,7 @@
                             Information</a>
                     </li>
                     <li>
-                        <a href="{{ url('Your/profile') }}"><img
-                                src="https://img.icons8.com/office/30/000000/administrator-male--v1.png" />Profile </a>
+                        <a href="../index.php"><img src="https://img.icons8.com/dusk/30/000000/home.png" /> Homepage</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -2,7 +2,7 @@
 
 
 @section('content')
-{{-- @if (!empty($Auth::user()))
+    {{-- @if (!empty($Auth::user()))
     
 @else
     
@@ -25,11 +25,11 @@
                     <thead>
                         <tr align="center">
                             {{-- <th>id</th> --}}
-                            <th>title</th>
-                            <th>fname</th>
-                            <th>lname</th>
-                            <th>email</th>
-                            <th>View Details</th>
+                            <th id="td">Title</th>
+                            <th id="td">First Name</th>
+                            <th id="td">Last Name</th>
+                            <th id="td">Email</th>
+                            <th id="td">View Details</th>
                         </tr>
                     </thead>
                     <tbody>

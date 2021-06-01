@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <h1> List of the available Rooms && Reserved Rooms </h1>
+                <h1> List of the available Rooms & Reserved Rooms </h1>
                 <table class="table table-bordered table-striped  table-hover table-primary">
                     <thead class="thead-dark">
                         <tr class="row100 head">

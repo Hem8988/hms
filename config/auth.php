@@ -52,11 +52,11 @@ return [
             'hash' => false,
         ],
 
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'admins',
-            'hash' => false,
-        ],
+        // 'api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'admins',
+        //     'hash' => false,
+        // ],
 
         
     ],
@@ -86,7 +86,7 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\admin::class,
+            'model' => App\Models\Admin::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -117,7 +117,7 @@ return [
             'throttle' => 60,
         ],
         'admins' => [
-            'provider' => 'users',
+            'provider' => 'admin',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -209,7 +209,7 @@ h2 {
     margin: 0;
     padding: 0;
     font-weight: bold;
-    color: rgb(0, 0, 0);
+    color: block;
     font-family: Poppins;
     font-size: 21px;
     text-align: center;
@@ -240,7 +240,7 @@ h2 {
 
 .booking-form {
     width: 41.67%;
-    background: #111;
+    background: rgb(255, 255, 255);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -337,8 +337,8 @@ input {
 input:focus+.form-label,
 input:valid+.form-label {
     top: 1px;
-    font-size: 11px;
-    color: #edb77d;
+    font-size: 15px;
+    color: black;
 }
 
 input,

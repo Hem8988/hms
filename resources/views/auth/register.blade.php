@@ -1,7 +1,7 @@
 @extends('frontend.layouts.index')
 @section('content')
     <!--  Welcome -->
-    <section class="site-hero overlay" style="background-image: url(home/images/hero_4.jpg)"
+    <section class="site-hero overlay" style="background-image: url(home/images/home3.jpg)"
         data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row site-hero-inner justify-content-center align-items-center">
@@ -34,7 +34,7 @@
                         alt="Booking Image">
                 </div>
                 <div class="booking-form">
-                    <form method="POST" id="booking-form" action="{{ route('register') }}"  enctype="multipart/form-data">
+                    <form method="POST" autocomplete="off" id="booking-form" action="{{ route('register') }}"  enctype="multipart/form-data" >
                         @csrf
                         <h2>Registration </h2>
                         <div class="form-group form-input">
@@ -47,7 +47,7 @@
                         @endif
                         <div class="form-group form-input">
                             <input type="email" name="email" id="email" />
-                            <label for="email" class="form-label">{{ __('Your Email') }}<span
+                            <label for="email" class="form-label" >{{ __('Your Email') }}<span
                                     class="required">*</span></label>
                         </div>
                         @if ($errors->has('email'))
@@ -63,7 +63,7 @@
                         @endif
                         <div class="form-group form-input">
                             <input type="address" name="address" id="address" />
-                            <label for="address" class="form-label">{{ __('Your addressr') }}<span
+                            <label for="address" class="form-label">{{ __('Your Addressr') }}<span
                                     class="required">*</span></label>
                         </div>
                         @if ($errors->has('address'))
@@ -71,15 +71,15 @@
                         @endif
                         <div class="form-group form-input">
                             <input type="number" name="pin" id="pin" />
-                            <label for="pin" class="form-label">{{ __('Your postal code') }}<span
+                            <label for="pin" class="form-label">{{ __('Your Postal code') }}<span
                                     class="required">*</span></label>
                         </div>
                         @if ($errors->has('pin'))
                             <span class="text-danger">{{ $errors->first('pin') }}</span>
                         @endif
                         <div class="form-group">
-                            <label>Image </label>
-                            <input type="file" class="form-control" name="profile" />
+                            <label>Profiles </label>
+                            <input type="file" class="form-control" name="rofile" />
                         </div>
                         @if ($errors->has('profile'))
                             <span class="text-danger">{{ $errors->first('profile') }}</span>

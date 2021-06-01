@@ -6,14 +6,14 @@
     @endforeach
     @foreach ($infor as $infor)
     @endforeach
-    <section class="site-hero inner-page overlay" style="background-image: url({{ asset('home/images/hero_4.jpg') }})"
+    <section class="site-hero inner-page overlay" style="background-image: url({{ asset('home/images/home2.jpg') }})"
         data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row site-hero-inner justify-content-center align-items-center">
                 <div class="col-md-10 text-center" data-aos="fade">
                     <h1 class="heading mb-3">About Us</h1>
                     <ul class="custom-breadcrumbs mb-4">
-                        <li><a href="home">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li>&bullet;</li>
                         <li>About</li>
                     </ul>
