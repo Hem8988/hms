@@ -18,6 +18,7 @@ use App\Http\Controllers\DescriptionController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\Food_categoryController;
+use App\Http\Controllers\SweetalertController;
 use App\Models\room_Category;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\category_food;
@@ -47,6 +48,7 @@ use App\Http\Controllers\ProfileController;
 Auth::routes();
 // Auth::routes(['verify' => true]);
 
+
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
@@ -73,6 +75,7 @@ Route::get('/about', [PageController::class, 'About']);
 Route::get('/event', [PageController::class, 'Event']);
 Route::get('/rooms', [PageController::class, 'Rooms']);
 
+// Route::get('sweetalert/{type}','[SweetalertController::class,]SweetalertController@notification');
 
 
 //route for select country state and city
@@ -93,8 +96,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //profile page
     Route::get('/Your/profile', [ProfileController::class, 'viewProfile']);
-    Route::post('Your/edit/profile/{id}', [ProfileController::class,'editProfileShow']);
-    Route::post('Your/edit/password/{id}', [ProfileController::class,'editPassword']);
+    Route::post('Your/edit/profile/{id}', [ProfileController::class, 'editProfileShow']);
+    Route::post('Your/edit/password/{id}', [ProfileController::class, 'editPassword']);
 
     //payment route
     Route::get('/amount', [paymentcontroller::class, 'getamount'])->name('index');
@@ -118,122 +121,123 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
+Route::group(['middleware' => ['admin.auth']], function () {
+    //route for add room category
+    Route::get('/roomcategory', function () {
+        return view('admin.room_category.add');
+    });
+    Route::post('/roomcategory', [RoomCategoryController::class, 'addCategoryroom']);
+    Route::get('/roomlist', [RoomCategoryController::class, 'roomList'])->name('admin.room_category.list');
+    Route::get('/delete/{id}', [RoomCategoryController::class, 'delete']);
+    Route::get('/Edit/{id}', [RoomCategoryController::class, 'ShowEditCategory']);
+    Route::post('/EditRoom/{id}', [RoomCategoryController::class, 'EditCategory']);
 
-//route for add room category
-Route::get('/roomcategory', function () {
-    return view('admin.room_category.add');
+
+
+    // route for add room
+    Route::get('/addrRoom', function () {
+        $categoryRoom = room_Category::all();
+        return view('admin.room.add', compact('categoryRoom'));
+    });
+    Route::post('/addrRoom', [roomController::class, 'addRoom']);
+    Route::get('/Listofroom', [roomController::class, 'room_list'])->name('admin.room.list');
+    Route::get('/deleteRoom/{id}', [roomController::class, 'delete']);
+    Route::get('/edit/room/{id}', [roomController::class, 'ShowEditRoom']);
+    Route::post('/editRoom/{id}', [roomController::class, 'EditRoom']);
+
+
+    //Route for Event
+    Route::get('AddEvent', function () {
+        return view('admin.event.add');
+    });
+    Route::post('/EventAdd', [EventController::class, 'AddPost'])->name('admin.event.add');
+    Route::get('/list', [EventController::class, 'getEvent'])->name('admin.event.list');
+    Route::get('/edit/Event/{id}', [EventController::class, 'Edit']);
+    Route::post('/editEvent/{id}', [EventController::class, 'EditPost']);
+    Route::get('/deleteEvent/{id}', [EventController::class, 'Delete']);
+
+
+    // Route for About
+    Route::get('/AboutList', [AboutController::class, 'getAbout'])->name('admin.about.list');
+    Route::get('/Aboutedit', [AboutController::class, 'edit']);
+    Route::post('/AboutEdit', [AboutController::class, 'Aboutpost']);
+
+    // Route for Description
+    Route::get('/descriptionList', [DescriptionController::class, 'getDescription'])->name('admin.description.list');
+    Route::get('/Description&&Show&&show', [DescriptionController::class, 'editDescriptionShow']);
+    Route::post('/edit&&Description', [DescriptionController::class, 'editDescription']);
+
+    // Route for information
+    Route::get('/InformationList', [InformationController::class, 'getInformation'])->name('admin.information.list');
+    Route::get('/Information&&Edit&&show', [InformationController::class, 'InformationeditShow']);
+    Route::post('/Information&&Edit', [InformationController::class, 'informationEdit']);
+
+
+    // route for Slide
+    Route::get('slider', function () {
+        return view('admin.slide.add');
+    });
+    Route::post('/Slide&&Add', [SlideController::class, 'AddSlide']);
+    Route::get('/slide&&list', [SlideController::class, 'getSlide']);
+    Route::get('/Slide&&edit&&show/{id}', [SlideController::class, 'slideEditShow']);
+    Route::post('/Slide&&edit/{id}', [SlideController::class, 'Editslide']);
+    Route::get('/delete&&slide/{id}', [SlideController::class, 'slideDelete']);
+
+
+    // Route for  Reservation list
+    Route::get('List&&Reservation', function () {
+        $reservation = DB::table('reservations')
+            ->join('countries', 'reservations.country', "=", 'countries.country_id')
+            ->join('states', 'reservations.state', "=", 'states.state_id')
+            ->join('cities', 'reservations.city', "=", 'cities.city_id')
+            ->join('room__categories', 'reservations.troom', "=", 'room__categories.id')
+            ->join('rooms', 'reservations.nroom', "=", 'rooms.id')
+            ->select('reservations.*', 'countries.country_name', 'states.state_name', 'cities.city_name', 'room__categories.name', 'rooms.room_name')
+            ->get();
+        // dd($ReservationGet);
+        return view('admin.reservation.list', compact('reservation'));
+    });
+    Route::get('viewDdetails/{id}', [reservationController::class, 'getdetail']);
+    Route::get('/Edit&&detail/{id}', [reservationController::class, 'Edit']);
+    Route::get('/Edit&&detail%%Post/{id}', [reservationController::class, 'EditPost']);
+    Route::get('/delete&&detail/{id}', [reservationController::class, 'Delete']);
+
+
+
+    //list of users
+    Route::get('list&&ouer', function () {
+        $user = user::all();
+        return view('admin.user.list', compact('user'));
+    });
+
+
+
+    //foodCategory
+    Route::get('addFoodCategory', function () {
+        return view('admin.foodCategory.add');
+    });
+    Route::post('/Add&&Category', [Food_categoryController::class, 'inserCategory']);
+    Route::get('list&&Category', function () {
+        $foodCategory = category_food::all();
+        return view('admin.foodCategory.list', compact('foodCategory'));
+    });
+    Route::get('/Edit&&categoryofFood/{id}', [Food_categoryController::class, 'Editfood']);
+    Route::post('/Edit/categoryFood/{id}', [Food_categoryController::class, 'EditfoodPost']);
+    Route::get('/delete&&foodCategory/{id}', [Food_categoryController::class, 'Delete']);
+
+
+    // route for food
+    Route::get('addFood', function () {
+        $categoryFood = category_food::all();
+        return view('admin.food.add', compact('categoryFood'));
+    });
+    Route::post('/Add/food', [FoodController::class, 'AddFood'])->name('admin.food.add');
+    Route::get('addFood', function () {
+        $categoryFood = category_food::all();
+        return view('admin.food.add', compact('categoryFood'));
+    });
+    Route::get('/list/food', [FoodController::class, 'getFood']);
+    Route::get('/show/Edit/Food/{id}', [FoodController::class, 'showEdit']);
+    Route::post('/Edit/Food/{id}', [FoodController::class, 'Editfood']);
+    Route::get('/delete/food/{id}', [FoodController::class, 'Delete']);
 });
-Route::post('/roomcategory', [RoomCategoryController::class, 'addCategoryroom']);
-Route::get('/roomlist', [RoomCategoryController::class, 'roomList'])->name('admin.room_category.list');
-Route::get('/delete/{id}', [RoomCategoryController::class, 'delete']);
-Route::get('/Edit/{id}', [RoomCategoryController::class, 'ShowEditCategory']);
-Route::post('/EditRoom/{id}', [RoomCategoryController::class, 'EditCategory']);
-
-
-
-// route for add room
-Route::get('/addrRoom', function () {
-    $categoryRoom = room_Category::all();
-    return view('admin.room.add', compact('categoryRoom'));
-});
-Route::post('/addrRoom', [roomController::class, 'addRoom']);
-Route::get('/Listofroom', [roomController::class, 'room_list'])->name('admin.room.list');
-Route::get('/deleteRoom/{id}', [roomController::class, 'delete']);
-Route::get('/edit/room/{id}', [roomController::class, 'ShowEditRoom']);
-Route::post('/editRoom/{id}', [roomController::class, 'EditRoom']);
-
-
-//Route for Event
-Route::get('AddEvent', function () {
-    return view('admin.event.add');
-});
-Route::post('/EventAdd', [EventController::class, 'AddPost'])->name('admin.event.add');
-Route::get('/list', [EventController::class, 'getEvent'])->name('admin.event.list');
-Route::get('/edit/Event/{id}', [EventController::class, 'Edit']);
-Route::post('/editEvent/{id}', [EventController::class, 'EditPost']);
-Route::get('/deleteEvent/{id}', [EventController::class, 'Delete']);
-
-
-// Route for About
-Route::get('/AboutList', [AboutController::class, 'getAbout'])->name('admin.about.list');
-Route::get('/Aboutedit', [AboutController::class, 'edit']);
-Route::post('/AboutEdit', [AboutController::class, 'Aboutpost']);
-
-// Route for Description
-Route::get('/descriptionList', [DescriptionController::class, 'getDescription'])->name('admin.description.list');
-Route::get('/Description&&Show&&show', [DescriptionController::class, 'editDescriptionShow']);
-Route::post('/edit&&Description', [DescriptionController::class, 'editDescription']);
-
-// Route for information
-Route::get('/InformationList', [InformationController::class, 'getInformation'])->name('admin.information.list');
-Route::get('/Information&&Edit&&show', [InformationController::class, 'InformationeditShow']);
-Route::post('/Information&&Edit', [InformationController::class, 'informationEdit']);
-
-
-// route for Slide
-Route::get('slider', function () {
-    return view('admin.slide.add');
-});
-Route::post('/Slide&&Add', [SlideController::class, 'AddSlide']);
-Route::get('/slide&&list', [SlideController::class, 'getSlide']);
-Route::get('/Slide&&edit&&show/{id}', [SlideController::class, 'slideEditShow']);
-Route::post('/Slide&&edit/{id}', [SlideController::class, 'Editslide']);
-Route::get('/delete&&slide/{id}', [SlideController::class, 'slideDelete']);
-
-
-// Route for  Reservation list
-Route::get('List&&Reservation', function () {
-    $reservation = DB::table('reservations')
-        ->join('countries', 'reservations.country', "=", 'countries.country_id')
-        ->join('states', 'reservations.state', "=", 'states.state_id')
-        ->join('cities', 'reservations.city', "=", 'cities.city_id')
-        ->join('room__categories', 'reservations.troom', "=", 'room__categories.id')
-        ->join('rooms', 'reservations.nroom', "=", 'rooms.id')
-        ->select('reservations.*', 'countries.country_name', 'states.state_name', 'cities.city_name', 'room__categories.name', 'rooms.room_name')
-        ->get();
-    // dd($ReservationGet);
-    return view('admin.reservation.list', compact('reservation'));
-});
-Route::get('viewDdetails/{id}', [reservationController::class, 'getdetail']);
-Route::get('/Edit&&detail/{id}', [reservationController::class, 'Edit']);
-Route::get('/Edit&&detail%%Post/{id}', [reservationController::class, 'EditPost']);
-Route::get('/delete&&detail/{id}', [reservationController::class, 'Delete']);
-
-
-
-//list of users
-Route::get('list&&ouer', function () {
-    $user = user::all();
-    return view('admin.user.list', compact('user'));
-});
-
-
-
-//foodCategory
-Route::get('addFoodCategory', function () {
-    return view('admin.foodCategory.add');
-});
-Route::post('/Add&&Category', [Food_categoryController::class, 'inserCategory']);
-Route::get('list&&Category', function () {
-    $foodCategory = category_food::all();
-    return view('admin.foodCategory.list', compact('foodCategory'));
-});
-Route::get('/Edit&&categoryofFood/{id}', [Food_categoryController::class, 'Editfood']);
-Route::post('/Edit/categoryFood/{id}', [Food_categoryController::class, 'EditfoodPost']);
-Route::get('/delete&&foodCategory/{id}', [Food_categoryController::class, 'Delete']);
-
-
-// route for food
-Route::get('addFood', function () {
-    $categoryFood = category_food::all();
-    return view('admin.food.add', compact('categoryFood'));
-});
-Route::post('/Add/food', [FoodController::class, 'AddFood'])->name('admin.food.add');
-Route::get('addFood', function () {
-    $categoryFood = category_food::all();
-    return view('admin.food.add', compact('categoryFood'));
-});
-Route::get('/list/food', [FoodController::class, 'getFood']);
-Route::get('/show/Edit/Food/{id}', [FoodController::class, 'showEdit']);
-Route::post('/Edit/Food/{id}', [FoodController::class, 'Editfood']);
-Route::get('/delete/food/{id}', [FoodController::class, 'Delete']);

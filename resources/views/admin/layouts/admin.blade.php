@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Admin Area -SUN RISE </a>
+                <a class="navbar-brand" href="index.html">Admin Area -Pardesi Resort</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -67,17 +67,9 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <form action="{{ route('admin.logout') }}" method="POST">
-                            @csrf
-                            <button type="submit">
-                                {{ __('Logout') }}
-                            </button>
-                        </form>
-                        {{-- <a href="{{ url('admin/admin/logout') }}"> logout </a> --}}
-                        {{-- @if (Auth::check())
+
+                        @if (Auth::check())
                             <li><i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }}
-                            </li>
-                            <li><a href="admin/user/sua"><i class="fa fa-gear fa-fw"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
                             <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
@@ -89,7 +81,7 @@
                                 @csrf
                             </form>
 
-                        @endif --}}
+                        @endif
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -115,7 +107,7 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="admin/theloai/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Paradise Resort
+                            <a href="admin/theloai/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Resort Settings
                                 <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
